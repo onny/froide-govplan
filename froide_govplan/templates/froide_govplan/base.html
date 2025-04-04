@@ -186,13 +186,21 @@
   </header>
 
   <main>
-    <h1 class="text-body-emphasis">Get started with Bootstrap</h1>
-    <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
 
+    {% if request.path == '/' %}
+
+    <h1 class="text-body-emphasis">Licht ins Dunkel</h1>
+    <p class="fs-5 col-md-8">
+    Mit unserem Verwaltungstracker können Sie die Arbeit der Stadtverwaltung live verfolgen:
+    Welche Vorhaben werden umgesetzt? Wo wird gebremst? Wie sieht der Stand in einzelnen Themenbereichen aus?
+    </p>
+  
     <div class="mb-5">
-      <a href="/docs/5.3/examples/" class="btn btn-primary btn-lg px-4">Download examples</a>
+    <a href="/docs/5.3/examples/" class="btn btn-primary btn-lg px-4">Download examples</a>
     </div>
 
+    {% endif %}
+    
     {% static_alias "govplan_header" %}
     {% block app_body %}
         {% placeholder "content" %}
@@ -273,7 +281,7 @@
     </div>
   </main>
   <footer class="pt-5 my-5 text-body-secondary border-top">
-    Created by the Bootstrap team &middot; &copy; 2024
+    Created by the Project-Insanity team &middot; &copy; 2025
   </footer>
 </div>
 <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

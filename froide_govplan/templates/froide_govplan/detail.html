@@ -5,7 +5,6 @@
 {% load cms_tags %}
 {% load follow_tags %}
 {% load govplan %}
-{% load form_helper %}
 {% load content_helper %}
 {% load thumbnail %}
 {% block title %}
@@ -35,9 +34,7 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                        {% if government.active %}
-                            <div class="ms-auto mt-2 mt-md-0">{% show_follow "govplan" object %}</div>
-                        {% endif %}
+                        <b>FIXME FOLLOW LIST</b>
                     </div>
                     <div class="row">
                         <div class="col col-12 col-md-7 col-lg-8 order-md-2 offset-lg-1">
@@ -176,12 +173,7 @@
                                                             aria-label="{% translate "Close" %}"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post"
-                                                          action="{% url 'govplan:propose_planupdate' gov=object.government.slug plan=object.slug %}">
-                                                        {% csrf_token %}
-                                                        {% render_form update_proposal_form %}
-                                                        <button type="submit" class="btn btn-primary">Neue Entwicklung melden</button>
-                                                    </form>
+                                                    <b>FIXME FORM SUBMIT</b>>
                                                 </div>
                                             </div>
                                         </div>

@@ -9,34 +9,37 @@
 {% else %}
 <div class="row">
   {% for object in object_list %}
-    <div class="col col-12 col-md-6 col-lg-4 d-flex mb-3">
-      <a href="{{ object.get_absolute_url }}" class="d-flex w-100 text-body text-decoration-none">
-        <div class="box-card border-blue w-100 bg-body shadow-blue">
-          <div class="box-card-header p-3 text-bg-callout">
-            <h3 class="h6 m-0">
-              {{ object.title }}
-            </h3>
-          </div>
-          <div class="p-3 tight-margin d-flex flex-column flex-1 h-100">
+
+  <div class="col-sm-6 col-lg-4 mb-4">
+    <div class="card">
+        <div class="card-body">
+          <a href="{{ object.get_absolute_url }}" class="text-decoration-none text-reset">
+            <h5 class="card-title">{{ object.title }}</h5>
+          </a>
+          <p class="card-text">
             {% if object.quote %}
             <blockquote>
               {{ object.quote|striptags|truncatewords:20|addquotes }}
             </blockquote>
-            {% endif %}
-            <div class="d-flex mt-auto">
-              <span href="{{ object.get_absolute_url }}" class="action-link text-blue-600">
-                → mehr lesen
+            {% endif %}            
+          </p>
+          <div class="d-flex mt-auto">
+            <a href="{{ object.get_absolute_url }}" class="text-decoration-none">
+            <span href="{{ object.get_absolute_url }}" class="action-link text-blue-600 ">
+              → mehr lesen
+            </span>
+            </a>
+            <div class="ms-auto">
+              <span class="badge text-bg-{{ object.get_status_css }}">
+                {{ object.get_status_display }}
               </span>
-              <div class="ms-auto">
-                <span class="badge text-bg-{{ object.get_status_css }}">
-                  {{ object.get_status_display }}
-                </span>
-              </div>
             </div>
-          </div>
+          </div>          
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         </div>
-      </a>
     </div>
+  </div>
+  
   {% endfor %}
 </div>
 {% endif %}

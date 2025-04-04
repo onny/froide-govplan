@@ -9,6 +9,7 @@
     start =
       pkgs.writeShellScriptBin "start" ''
         set -e
+	export NIXPKGS_ALLOW_INSECURE=1
         export QEMU_NET_OPTS="hostfwd=tcp::8080-:80"
         ${pkgs.nixos-shell}/bin/nixos-shell --flake .
        '';
