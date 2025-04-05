@@ -21,21 +21,21 @@
             <blockquote>
               {{ object.quote|striptags|truncatewords:20|addquotes }}
             </blockquote>
-            {% endif %}            
+            {% endif %}     
+            <a href="{{ object.get_absolute_url }}" class="text-decoration-none">
+              <span href="{{ object.get_absolute_url }}" class="action-link text-blue-600 ">
+                → mehr lesen
+              </span>
+            </a>       
           </p>
           <div class="d-flex mt-auto">
-            <a href="{{ object.get_absolute_url }}" class="text-decoration-none">
-            <span href="{{ object.get_absolute_url }}" class="action-link text-blue-600 ">
-              → mehr lesen
-            </span>
-            </a>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
             <div class="ms-auto">
               <span class="badge text-bg-{{ object.get_status_css }}">
                 {{ object.get_status_display }}
               </span>
             </div>
           </div>          
-          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         </div>
     </div>
   </div>
