@@ -12,41 +12,33 @@
 </style>
 
 <div class="album py-5 bg-body-tertiary">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-      {% for section in sections %}
-      <div class="col">
-        <a href="{{ section.get_absolute_url }}" class="d-flex w-100 text-body text-decoration-none">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice">
-            <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-              {{ section.title }}
-            </text>
-          </svg>
-          {% if section.icon %}
-          <div class="ms-auto">
-            <div class="box-card-icon position-static text-bg-body">
-              <i class="fa fa-{{ section.icon }}"></i>
-            </div>
-          </div>
-          {% endif %}
-          <div class="card-body">
-            <p class="card-text">
-                {% get_section_progress section %}
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+  
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for section in sections %}
+    <div class="col">
+      <a href="{{ section.get_absolute_url }}" class="text-decoration-none text-reset">
+      <div class="card shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+          <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+            {{ section.title }}
+          </text>
+        </svg>
+        <div class="card-body">
+          <p class="card-text">
+            {% if section.icon %}
+            <div class="ms-auto">
+              <div class="box-card-icon position-static text-bg-body">
+                <i class="fa fa-{{ section.icon }}"></i>
               </div>
-              <small class="text-body-secondary">9 mins</small>
             </div>
-          </div>
+            {% endif %}
+            {% get_section_progress section %}
+          </p>
         </div>
-        </a>
       </div>
-      {% endfor %}
+      </a>
+    </div>
+    {% endfor %}
+
   </div>
 </div>
