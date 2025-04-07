@@ -22,8 +22,8 @@
           (self: super: {
             froide-govplan = super.froide-govplan.overrideAttrs (oldAttrs: rec {
               postInstall = oldAttrs.postInstall + ''
-                rm -r $out/${pkgs.python3.sitePackages}/froide_govplan/templates/froide_govplan
-                ln -sf /var/lib/froide-govplan/template $out/${pkgs.python3.sitePackages}/froide_govplan/templates/froide_govplan
+                rm -r $out/${pkgs.python3.sitePackages}/froide_govplan/templates
+                ln -sf /var/lib/froide-govplan/templates $out/${pkgs.python3.sitePackages}/froide_govplan/templates
               '';
             });
           })
@@ -47,8 +47,8 @@
 	  };
 
           nixos-shell.mounts.extraMounts = {
-            "/var/lib/froide-govplan/template" = {
-               target = /home/onny/projects/froide-govplan/froide_govplan/templates/froide_govplan;
+            "/var/lib/froide-govplan/templates" = {
+               target = /home/onny/projects/froide-govplan/froide_govplan/templates;
                cache = "none";
             };
           };
