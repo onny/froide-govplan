@@ -25,47 +25,17 @@
                 {% for cat in object.categories.all %}
                     <li>
                         <a href="{{ section.get_absolute_url }}"
-                           class="badge text-bg-light-subtle me-2">{{ cat.name }}</a>
+                           class="badge text-bg-light text-decoration-none">{{ cat.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
-        <dl>
-            {% if object.quote %}
-                <dt>Ausschnitt aus dem Koalitionsvertrag</dt>
-                <dd>
-                    <blockquote>
-                        {{ object.quote | addquotes | markdown }}
-                    </blockquote>
-                    {% with refs=object.get_reference_links %}
-                        {% if refs %}
-                            <p>
-                                <span class="small">
-                                    {% if refs|length > 1 %}
-                                        Quellen:
-                                    {% else %}
-                                        Quelle:
-                                    {% endif %}
-                                </span>
-                                {% for ref in refs %}
-                                    <a href="{{ ref }}" class="badge text-bg-light me-2" target="_blank">{{ forloop.counter }}</a>
-                                {% endfor %}
-                            </p>
-                        {% endif %}
-                    {% endwith %}
-                {% endif %}
-            </dd>
-            {% if object.description %}
-                <div class="mt-3 mt-md-5">
-                    <dt>Unsere Einschätzung</dt>
-                    <dd>
-                        {{ object.description | safe }}
-                    </dd>
-                </div>
-            {% endif %}
-        </dl>
-        <div class="row">
-            <div class="col col-12 col-md-5 col-lg-3 mt-3 mt-md-0">
+
+        <div>
+            <div class="row">
+              <!-- Linke Spalte: Desktop: ca. 33% -->
+              <div class="col-12 col-md-4 order-md-1 order-2">
+
                 <dl>
                     {% if object.rating %}
                         <dt>Bewertung</dt>
@@ -88,13 +58,14 @@
                     {% if object.responsible_publicbody %}
                         <dt>Federführung</dt>
                         <dd>
-                            <a href="{{ object.responsible_publicbody.get_absolute_url }}">{{ object.responsible_publicbody.name }}</a>
+                            <a href="#" class="text-decoration-none">{{ object.responsible_publicbody.name }}</a>
                         </dd>
                     {% endif %}
+                    <br>
                     {% if object.responsible_publicbody %}
                         {% if not object.has_recent_foirequest and government.active %}
                             <p>
-                                <a href="{{ object.make_request_url }}"
+                                <a href="#"
                                    target="_blank"
                                    class="btn btn-outline-primary btn-sm">Anfrage zum Vorhaben stellen</a>
                             </p>
@@ -129,8 +100,50 @@
                         </dd>
                     {% endif %}
                 </dl>
+
+            </div>
+              <!-- Rechte Spalte: Desktop: ca. 67% -->
+              <div class="col-12 col-md-8 order-md-2 order-1">
+
+                <dl>
+                    {% if object.quote %}
+                        <dt>Ausschnitt aus dem Verwaltungsvorhaben</dt>
+                        <dd>
+                            <blockquote>
+                                {{ object.quote | addquotes | markdown }}
+                            </blockquote>
+                            {% with refs=object.get_reference_links %}
+                                {% if refs %}
+                                    <p>
+                                        <span class="small">
+                                            {% if refs|length > 1 %}
+                                                Quellen:
+                                            {% else %}
+                                                Quelle:
+                                            {% endif %}
+                                        </span>
+                                        {% for ref in refs %}
+                                            <a href="{{ ref }}" class="badge text-bg-light me-2" target="_blank">{{ forloop.counter }}</a>
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    </dd>
+                    {% if object.description %}
+                        <div class="mt-3 mt-md-5">
+                            <dt>Unsere Einschätzung</dt>
+                            <dd>
+                                {{ object.description | safe }}
+                            </dd>
+                        </div>
+                    {% endif %}
+                </dl>
+
+                </div>
             </div>
         </div>
+
     </p>
 
     <div class="row align-items-md-stretch">
