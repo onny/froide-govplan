@@ -5,6 +5,7 @@
 {% load cms_tags %}
 {% load follow_tags %}
 {% load govplan %}
+{% load form_helper %}
 {% load content_helper %}
 {% load thumbnail %}
 {% block title %}
@@ -25,7 +26,7 @@
                 {% for cat in object.categories.all %}
                     <li>
                         <a href="{{ section.get_absolute_url }}"
-                           class="badge text-bg-light text-decoration-none">{{ cat.name }}</a>
+                           class="badge text-bg-light text-decoration-none me-2">{{ cat.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -174,7 +175,12 @@
                                         aria-label="{% translate "Close" %}"></button>
                             </div>
                             <div class="modal-body">
-                                <b>FIXME FORM SUBMIT</b>>
+                                <form method="post"
+                                    action="{% url 'govplan:propose_planupdate' gov=object.government.slug plan=object.slug %}">
+                                    {% csrf_token %}
+                                    {% render_form update_proposal_form %}
+                                    <button type="submit" class="btn btn-primary">Neue Entwicklung melden</button>
+                                </form>
                             </div>
                         </div>
                     </div>

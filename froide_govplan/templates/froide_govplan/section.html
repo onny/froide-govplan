@@ -21,7 +21,7 @@
     <h1 class="text-body-emphasis">{{ object.title }}</h1>
     <p class="fs-5 col-md-8">
     {% blocktranslate with section=object.title %}
-    Here you can find all plans of the section “{{ section }}”, which the coalition constituted in their agreement. On the curresponding detail pages, you'll get more information, stay up to date with news or submit changes.
+    Hier finden Sie alle Vorhaben aus dem Bereich „{{ section }}“, welche die Stadtverwaltung festgelegt hat. Auf den jeweiligen Detailseiten erhalten Sie mehr Informationen, können Neuigkeiten abonnieren oder Änderungen einreichen. 
     {% endblocktranslate %}
     </p>
 
@@ -37,7 +37,6 @@
                         <span class="text-nowrap me-1"><i class="fa fa-circle text-success"></i>&nbsp;umgesetzt</span>
                         <span class="text-nowrap me-1"><i class="fa fa-circle text-danger"></i>&nbsp;verschoben</span>
                     </p>
-                    {% include "froide_govplan/plugins/time_used.html" with instance=object %}
                 </div>
             </div>
         </div>

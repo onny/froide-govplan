@@ -12,8 +12,53 @@
 </style>
 
 <div class="album py-5">
-  
+
+  <div style="margin-left: auto; max-width: 700px; margin-bottom: 1rem;">
+    <form method="get" action="/search/" class="ajaxified" data-container="#govplan-searchresult-275111" data-modalcontainer="#govplan-searchmodal-275111">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" aria-label="Suchbegriff" placeholder="Suchbegriff">
+        <select name="status" class="form-select" style="max-width: 300px;">
+          <option value="">Status filtern</option>
+          
+            <option value="not_started">nicht begonnen</option>
+          
+            <option value="started">begonnen</option>
+          
+            <option value="partially_implemented">teilweise umgesetzt</option>
+          
+            <option value="implemented">umgesetzt</option>
+          
+            <option value="deferred">zurückgestellt</option>
+          
+        </select>
+        <button class="btn btn-outline-secondary" type="submit">
+          Suchen
+        </button>
+      </div>
+      
+        <input type="hidden" name="government" value="1"/>
+      
+    </form>
+    
+    <div class="modal fade" id="govplan-searchmodal-275111">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Suchergebnisse</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen">
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="govplan-searchresult-275111"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
     {% for section in sections %}
     <div class="col">
       <a href="{{ section.get_absolute_url }}" class="text-decoration-none text-reset">
