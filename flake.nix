@@ -38,6 +38,21 @@
             cores = 4;
           };
 
+          nixpkgs = {
+            overlays = [
+              (self: super: {
+                froide-govplan = nixpkgs-master.froide-govplan.overridePythonAttrs (oldAttrs: {
+                  src = pkgs.fetchFromGitHub {
+                    owner = "onny";
+                    repo = "froide-govplan";
+                    rev = "b0bc48da19c40ac7288da088638a0c699075c556";
+                    hash = "sha256-wvI6HdDZnp45cRVXxiiWWyGZMd1rCT7r3NQk1Fa/oS4=";
+                  };
+                });
+              })
+            ];
+          };
+
 	  services.froide-govplan = {
 	    enable = true;
 	    settings = { 

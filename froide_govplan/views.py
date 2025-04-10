@@ -80,8 +80,7 @@ class GovPlanDetailView(GovernmentMixin, DetailView):
             "-timestamp"
         )
         context["section"] = self.object.get_section()
-        if self.request.user.is_authenticated:
-            context["update_proposal_form"] = GovernmentPlanUpdateProposalForm()
+        context["update_proposal_form"] = GovernmentPlanUpdateProposalForm()
         # For CMS toolbar
         self.request.govplan = self.object
         return context
