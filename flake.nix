@@ -21,6 +21,12 @@
 	overlays = [
           (self: super: {
             froide-govplan = super.froide-govplan.overrideAttrs (oldAttrs: rec {
+              src = pkgs.fetchFromGitHub {
+                owner = "onny";
+                repo = "froide-govplan";
+                rev = "81697ce37cfdee7b5d0f667c50b13062ed9786c3";
+                hash = "sha256-ooHGlCKgZL+TMh6OtopKtbkV0MhT4udLCOIC+C3Ytdw=";
+              };
               postInstall = oldAttrs.postInstall + ''
                 rm -r $out/${pkgs.python3.sitePackages}/froide_govplan/templates
                 ln -sf /var/lib/froide-govplan/templates $out/${pkgs.python3.sitePackages}/froide_govplan/templates
@@ -36,21 +42,6 @@
             memorySize = 8000;
             diskSize = 4096;
             cores = 4;
-          };
-
-          nixpkgs = {
-            overlays = [
-              (self: super: {
-                froide-govplan = nixpkgs-master.froide-govplan.overridePythonAttrs (oldAttrs: {
-                  src = pkgs.fetchFromGitHub {
-                    owner = "onny";
-                    repo = "froide-govplan";
-                    rev = "b0bc48da19c40ac7288da088638a0c699075c556";
-                    hash = "sha256-wvI6HdDZnp45cRVXxiiWWyGZMd1rCT7r3NQk1Fa/oS4=";
-                  };
-                });
-              })
-            ];
           };
 
 	  services.froide-govplan = {

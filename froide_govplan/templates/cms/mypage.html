@@ -129,6 +129,72 @@
 
   {% block scripts %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script lang="javascript">
+const Ze = t => {
+    const e = t.dataset.confirm;
+    return e ? !!window.confirm(e) : !0
+};
+const ke = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>',
+    Ye = t => {
+        Array.from(t.querySelectorAll("button, input")).forEach(e => {
+            e.getAttribute("type") === "submit" && (e.innerHTML = `${ke}${e.innerHTML}`), e.setAttribute("disabled", "")
+        })
+    },
+    Je = t => {
+        Array.from(t.querySelectorAll("button, input")).forEach(e => {
+            e.getAttribute("type") === "submit" && (e.innerHTML = e.innerHTML.replace(ke, "")), e.removeAttribute("disabled")
+        })
+    };
+function Xe() {
+    const t = document.querySelectorAll("form.ajaxified");
+    Array.from(t).forEach(e => {
+        e.addEventListener("submit", n => {
+            if (n.preventDefault(), !Ze(e)) return !1;
+            const r = e.getAttribute("method") || "post";
+            let o = e.getAttribute("action") || "";
+            const i = new FormData(e),
+                s = Array.from(i).map(c => c.map(l => encodeURIComponent(l)).join("=")).join("&");
+            r.toLowerCase() === "get" && (o = `${o}?${s}`);
+            const a = new XMLHttpRequest;
+            a.open(r, o, !0), a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.setRequestHeader("X-Requested-With", "XMLHttpRequest"), a.onload = () => {
+                var l, u;
+                if (e.dataset.modalcontainer) {
+                    const d = document.querySelector(e.dataset.modalcontainer);
+                    d != null && (new $(d).show(), console.log("got modal"));
+
+                    const modalElement = document.getElementById('govplan-searchmodal-275111');
+                    const modal = new bootstrap.Modal(modalElement);
+                    modal.show();
+
+                } else if (e.dataset.modal) {
+                    const d = document.getElementById(e.dataset.modal);
+                    (l = d == null ? void 0 : d.dataset) != null && l.bsTarget && ((u = $.getInstance(document.querySelector(d.dataset.bsTarget))) == null || u.hide())
+                }
+                const c = a.responseText;
+                if (c[0] === "/") {
+                    window.location.href = c, c.includes("#") && window.location.reload();
+                    return
+                }
+                if (e.dataset.container) {
+                    Je(e);
+                    const d = document.querySelector(e.dataset.container);
+                    d != null && (d.innerHTML = c)
+                } else {
+                    const d = e.closest(".ajax-parent");
+                    if (d != null)
+                        if (c[0] === "{") {
+                            const f = JSON.parse(c);
+                            f.errors && (d.outerHTML = `<div class="alert alert-danger">${f.errors}</div>`)
+                        } else d.outerHTML = c;
+                    else e.outerHTML = c
+                }
+            }, r.toLowerCase() !== "get" ? a.send(s) : a.send(), Ye(e)
+        })
+    })
+}    
+Xe();
+  </script>
   {% endblock %}
   {% render_block "js" %}
 
