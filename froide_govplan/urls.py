@@ -23,6 +23,11 @@ urlpatterns = [
         name="propose_planupdate",
     ),
     path(
+        pgettext_lazy("url part", "<slug:gov>/vorhaben/<slug:plan>/entwicklung-melden/"),
+        GovPlanProposeUpdateView.as_view(),
+        name="propose_planupdate",
+    ),
+    path(
         pgettext_lazy("url part", "<slug:gov>/<slug:section>/"),
         GovPlanSectionDetailView.as_view(),
         name="section",

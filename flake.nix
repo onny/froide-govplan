@@ -21,12 +21,13 @@
 	overlays = [
           (self: super: {
             froide-govplan = super.froide-govplan.overrideAttrs (oldAttrs: rec {
-              src = pkgs.fetchFromGitHub {
-                owner = "onny";
-                repo = "froide-govplan";
-                rev = "81697ce37cfdee7b5d0f667c50b13062ed9786c3";
-                hash = "sha256-ooHGlCKgZL+TMh6OtopKtbkV0MhT4udLCOIC+C3Ytdw=";
-              };
+              src = ./.;
+	      #pkgs.fetchFromGitHub {
+              #  owner = "onny";
+              #  repo = "froide-govplan";
+              #  rev = "81697ce37cfdee7b5d0f667c50b13062ed9786c3";
+              #  hash = "sha256-ooHGlCKgZL+TMh6OtopKtbkV0MhT4udLCOIC+C3Ytdw=";
+              #};
               postInstall = oldAttrs.postInstall + ''
                 rm -r $out/${pkgs.python3.sitePackages}/froide_govplan/templates
                 ln -sf /var/lib/froide-govplan/templates $out/${pkgs.python3.sitePackages}/froide_govplan/templates

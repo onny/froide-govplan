@@ -99,7 +99,7 @@ class GovPlanDetailView(GovernmentMixin, DetailView):
         ]
 
 
-class GovPlanProposeUpdateView(GovernmentMixin, LoginRequiredMixin, UpdateView):
+class GovPlanProposeUpdateView(GovernmentMixin, UpdateView):
     slug_url_kwarg = "plan"
     form_class = GovernmentPlanUpdateProposalForm
 
