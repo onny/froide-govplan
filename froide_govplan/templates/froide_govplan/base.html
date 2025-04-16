@@ -2,6 +2,7 @@
 {% load cms_tags %}
 {% load djangocms_alias_tags %}
 {% load menu_tags %}
+{% load static %}
 {% block body %}
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -81,9 +82,10 @@
 <div class="col-lg-10 mx-auto p-4 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
         <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none text-reset">
-            <svg class="bi me-2" width="40" height="32">
+            <!-- <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="#bootstrap" />
-            </svg>
+            </svg> -->
+            <img src="{% static 'froide_govplan/images/apple-touch-icon.png' %}" class="bi me-2" height="32">
             <span class="fs-4">VerwaltungsTracker</span>
         </a>
     </header>

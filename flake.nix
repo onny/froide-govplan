@@ -31,6 +31,7 @@
               postInstall = oldAttrs.postInstall + ''
                 rm -r $out/${pkgs.python3.sitePackages}/froide_govplan/templates
                 ln -sf /var/lib/froide-govplan/templates $out/${pkgs.python3.sitePackages}/froide_govplan/templates
+                cp -r froide_govplan/static $out/${pkgs.python3.sitePackages}/froide_govplan/
               '';
             });
           })
@@ -45,8 +46,13 @@
             cores = 4;
           };
 
+	  disabledModules = [ "services/web-apps/froide-govplan.nix" ];
+
+	  imports = [ ./froide-govplan.nix ];
+
 	  services.froide-govplan = {
 	    enable = true;
+	    package = pkgs.froide-govplan;
 	    settings = { 
 	      DEBUG = lib.mkForce true;
 	      CSRF_TRUSTED_ORIGINS = [ "http://localhost:8080" ];
