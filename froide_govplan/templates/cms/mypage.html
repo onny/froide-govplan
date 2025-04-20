@@ -10,8 +10,24 @@
   <script src="{% static 'froide_govplan/js/color-modes.js' %}"></script>
 
   <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta itemprop="name" content="VerwaltungsTracker – Portal für kommunale Transparenz">
+  <meta itemprop="description" content="​VerwaltungsTracker zeigt transparent, wie weit kommunale Projekte in Karlsruhe vorangeschritten sind – von der Planung bis zur Umsetzung. So behalten Sie den Überblick über die Entwicklung Ihrer Stadt.​">
+  <meta name="description"
+        content="​VerwaltungsTracker zeigt transparent, wie weit kommunale Projekte in Karlsruhe vorangeschritten sind – von der Planung bis zur Umsetzung. So behalten Sie den Überblick über die Entwicklung Ihrer Stadt.​" />
+  
+  <meta property="og:title" content="VerwaltungsTracker – Portal für kommunale Transparenz" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url"
+        content="https://verwaltungstracker.de/" />
+  
+      <meta property="og:image"
+            content="{% static 'froide_govplan/images/og_image.png' %}" />
+  
+  <meta property="og:description" content="​VerwaltungsTracker zeigt transparent, wie weit kommunale Projekte in Karlsruhe vorangeschritten sind – von der Planung bis zur Umsetzung. So behalten Sie den Überblick über die Entwicklung Ihrer Stadt.​" />
+  <meta property="og:site_name" content="VerwaltungsTracker" />
+
+  
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
   <link rel="stylesheet" href="{% static 'froide_govplan/css/docsearch.css' %}">
@@ -120,6 +136,10 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+      }
+
+      .mx-auto {
+        max-width: 1320px;
       }
     </style>
     {% block extra_css %}
